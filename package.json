@@ -1,0 +1,20 @@
+{
+  "name": "backchat-login",
+  "version": "0.0.0",
+  "description": "backchat login server",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "keywords": [
+    "backchat",
+    "login"
+  ],
+  "author": "linxu",
+  "license": "BSD",
+  "dependencies": {
+    "logfmt": "~0.20.0",
+    "express": "~3.4.8"
+  }
+}
