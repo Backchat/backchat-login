@@ -37,7 +37,6 @@ error = function(res, code, msg) {
 };
 
 ok_response = function(res, data) {
-    console.log(data);
     response(res, true, 200, data);
 };
 
