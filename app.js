@@ -192,7 +192,8 @@ authenticate = function(client, provider, access_token, success, failure) {
 	    search_and_authenticate(id_type, obj[id_name], obj.email);
 	}
     };
-    
+
+    var https_action = logger.time();    
     if(provider == 'facebook') {
 	https.get({hostname: "graph.facebook.com",
 		  path: '/me?access_token='+access_token
@@ -203,7 +204,8 @@ authenticate = function(client, provider, access_token, success, failure) {
 			  data += chunk;
 		      });
 		      response.on("end", function() {
-			  parse_json(data, 'fb_id', 'id');
+			  https_action.log({type: 'fb_get'});
+			  parse_json(data, 'fb_id', 'id');			 
 		      });
 		  }).on('error', function(e) {
 		      logger.log({error: e, message: "unable to query FB"});
@@ -220,6 +222,7 @@ authenticate = function(client, provider, access_token, success, failure) {
 			  data += chunk;
 		      });
 		      response.on("end", function() {
+			  https_action.log({type: 'gpp_get'});
 			  parse_json(data, 'gpp_id', 'user_id');
 		      });
 		  }).on('error', function(e) {
@@ -228,7 +231,8 @@ authenticate = function(client, provider, access_token, success, failure) {
 		  });
     }
     else {
-	failure();
+	https_action.log({type: 'invalid'});
+	failure();	
     } 	
 };
 
