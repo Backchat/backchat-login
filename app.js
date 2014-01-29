@@ -9,8 +9,7 @@ var yaml = require('js-yaml');
 var app = express();
 var server = http.createServer(app);
 var logger = logfmt.namespace({app: "backchat"});
-var database_url = process.env.DATABASE_URL;
-var enviroment = process.env.BACKCHAT_ENV; //stage or production
+var database_url = process.env.BACKCHAT_DATABASE_URL;
 
 app.use(logfmt.requestLogger());
 app.use(express.bodyParser());
