@@ -107,6 +107,8 @@ authenticate = function(client, provider, access_token, success, failure) {
     };
 
     var search_and_authenticate = function(id_type, id, email) {
+	logger.log({message: "searching", id_type: id_type, id: id, email: email});
+
 	var update_user_id = function(user_id) {
 	    logger.log({type: 'matched user', token: access_token, user_id: user_id, id_type: id_type, id_value: id, email: email});
 
@@ -189,7 +191,12 @@ authenticate = function(client, provider, access_token, success, failure) {
 	    failure();
 	}
 	else {
-	    search_and_authenticate(id_type, obj[id_name], obj.email);
+	    email = obj.email;
+	    if(email == null) {
+		email = ""; //TODO this matches what we are doing in ruby land, but I don't like it
+	    }
+
+	    search_and_authenticate(id_type, obj[id_name], email);
 	}
     };
 
