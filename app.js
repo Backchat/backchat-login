@@ -1,4 +1,7 @@
 // app.js
+if(process.env.NEW_RELIC_LICENSE_KEY != null)
+    require('newrelic');
+
 var express = require("express");
 var pg = require('pg').native;
 var logfmt = require("logfmt");
