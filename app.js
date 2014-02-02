@@ -118,7 +118,7 @@ authenticate = function(client, provider, access_token, success, failure) {
 	    get_user(client, user_id, function(user) {
 		//TODO begin transaction
 		email_to_set = user.email;
-		if(email != null && email.length != 0) 
+		if(email != null)
 		    email_to_set = email;
 
 		client.query("update users set " + id_type + " = $1, email = $2 where id = $3", 
